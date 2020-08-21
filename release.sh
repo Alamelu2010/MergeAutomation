@@ -33,7 +33,7 @@ fi
 echo "-- Checking out master --"
 git checkout master 
 git merge $version --no-ff --no-edit 
-git push --origin all
+git push 
 
 
 # Success
