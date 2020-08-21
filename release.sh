@@ -30,21 +30,8 @@ fi
 
 # Checkout master branch and merge version branch into master
 git checkout master
-git merge $version --no-ff --no-edit
-
-# Run version script, creating a version tag, and push commit and tags to remote
-npm version $version
-git push
-git push --tags
-
-# Checkout dev branch and merge master into dev (to ensure we have the version)
-git checkout dev
-git merge master --no-ff --no-edit
-git push
-
-# Delete version branch locally and on remote
-git branch -D $version
-git push origin --delete $version
+var=$(git merge master --no-ff --no-edit 2>&1) 
+echo var
 
 # Success
 echo "-------------------------------------------------------------------------"
