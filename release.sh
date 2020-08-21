@@ -19,18 +19,21 @@ echo "-------------------------------------------------------------------------"
 branch=$(git symbolic-ref --short -q HEAD)
 if [ "$branch" != "$version" ]; then
   git checkout $version
+  git pull
 fi
 
 # Ensure working directory in version branch clean
 git update-index -q --refresh
 if ! git diff-index --quiet HEAD --; then
-  echo "Working directory not clean, please commit your changes first"
-  exit
+ echo "Working directory not clean, please commit your changes first"
+exit
 fi
 
 # Checkout master branch and merge version branch into master
-git checkout master
-var=$(git merge master --no-ff --no-edit 2>&1) 
+echo "-- Checking out master --"
+checkoutvar = $(git checkout master 2>&1)
+echo checkoutvar
+var=$(git merge $version --no-ff --no-edit 2>&1) 
 echo var
 
 # Success
