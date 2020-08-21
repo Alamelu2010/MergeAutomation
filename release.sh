@@ -32,7 +32,8 @@ fi
 # Checkout master branch and merge version branch into master
 echo "-- Checking out master --"
 git checkout master 
-git merge $version --no-ff --no-edit 
+RESPONSE=$(git merge $version --no-ff --no-edit 2>&1 | tee > (cat 1>&2) | grep "error:" || true)
+echo RESPONSE
 git push 
 
 
