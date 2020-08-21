@@ -32,8 +32,8 @@ fi
 # Checkout master branch and merge version branch into master
 echo "-- Checking out master --"
 git checkout master 
-var=$(git merge $version --no-ff --no-edit 2>&1) 
-echo var
+git merge $version --no-ff --no-edit  
+
 
 # Success
 echo "-------------------------------------------------------------------------"
